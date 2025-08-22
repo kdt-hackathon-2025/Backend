@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+
+    <!-- Appender, Layout 설정 -->
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %-5level %logger{36} - %m%n"/>
+        </Console>
+    </Appenders>
+
+    <!-- Logger 설정 - 테스트 환경용 (간소화) -->
+    <Loggers>
+        <!-- Root Logger - 테스트 시 에러/경고만 -->
+        <Root level="WARN" additivity="false">
+            <AppenderRef ref="console"/>
+        </Root>
+        
+        <!-- 애플리케이션 로그 - 테스트 시 정보 수준 -->
+        <Logger name="org.scoula" level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <!-- Spring Framework - 에러만 -->
+        <Logger name="org.springframework" level="WARN" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+        
+        <!-- 테스트 관련 Spring 로그 -->
+        <Logger name="org.springframework.test" level="INFO" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <!-- JDBC/SQL 로그 - 테스트 시 필요할 때만 -->
+        <Logger name="jdbc" level="OFF" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+        <Logger name="jdbc.sqlonly" level="WARN" additivity="false">
+            <AppenderRef ref="console"/>
+        </Logger>
+
+    </Loggers>
+
+</Configuration>
